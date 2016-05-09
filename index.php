@@ -203,9 +203,7 @@ i {
 $(document).ready(function() {
 
     updateTime();
-    setTimeout(updateTime,5000); // update every 5 seconds
     updateWeather();
-    setTimeout(getWeather,6000000); // update every 10 minutes
 
 
     function updateWeather() {
@@ -231,13 +229,13 @@ $(document).ready(function() {
                     html += "</div>";
                     if(i>3)break;
                 }
-                console.log(weather);
                 $("#weather").html(html);
             },
             error: function(error) {
                 $("#weather").html('<p>'+error+'</p>');
             }
         });
+        setTimeout(updateWeather,6000000); // update every 10 minutes
     }
 
 
@@ -267,13 +265,11 @@ function updateTime() {
 
     months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
            days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    //var tstr = days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm;
-    var tstr = hours+':'+minutes+ampm + '<div class="datestring">'+days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+"</div>";
+    var tstr = hours+':'+minutes+ampm + '<div class="datestring">'+days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+"</div>";
 
 
     $("#time-container").html(tstr);
-    //$("#time-container").html(" "+d.getHours() + ":" + d.getMinutes())
-    //    .append("<div class='datestring'>"+month[d.getMonth()] + ", "+d.getDate()+" "+(d.getYear()+1900)+"</div>");
+    setTimeout(updateTime,5000); // update every 5 seconds
 }
 
 
