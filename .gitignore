@@ -1,0 +1,5 @@
+*.un~
+*.swp
+*.swo
+*access_log
+*error_log
