@@ -22,7 +22,7 @@
 }
 
 body {
-    background: #222222;
+    background: #1f1f1f;
     font: 13px 'Play','Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     color: #cccccc;
     width: 1420px;
