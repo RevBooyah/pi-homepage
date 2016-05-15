@@ -25,7 +25,8 @@ body {
     background: #1f1f1f;
     font: 13px 'Play','Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     color: #cccccc;
-    width: 1420px;
+    /* width: 1420px; */
+    width: 1720px;
 }
 
 #time-container {
@@ -193,10 +194,13 @@ i {
 
 <div style='clear:both; width: 100%; margin:3px;'></div>
 
-<div style='margin: 10px auto; width:1420px; height: 700px;'>
-    <iframe name='frame' id='frame' src="https://calendar.google.com/calendar/embed?src=stevec%40s2media.com&ctz=America/Denver" style="border: 0" width="1420" height="700" frameborder="0"     scrolling="no" style='margin: 10px auto; width:1300px; height: 600px;'></iframe> 
+<div style='margin: 10px auto; width:1420px; height: 600px;'>
+    <iframe name='frame' id='frame' src="https://calendar.google.com/calendar/embed?src=stevec%40s2media.com&ctz=America/Denver" style="border: 0" width="1420" height="600" frameborder="0"     scrolling="no" style='margin: 10px auto; width:1300px; height: 600px;'></iframe> 
 </div>
-<div id='second'></div> 
+<div style='clear:both; width: 100%; margin:3px;'></div>
+
+<div id='bitcoin-container' style='text-align:center; width:100%; font-size: 24px; font-weight:bold;'></div> 
+
 
 
 <script> 
@@ -204,6 +208,7 @@ $(document).ready(function() {
 
     updateTime();
     updateWeather();
+    updateBitcoin();
 
 
     function updateWeather() {
@@ -239,6 +244,12 @@ $(document).ready(function() {
     }
 
 
+    function updateBitcoin() {
+        $.getJSON("fetch_bitcoin.php",function(data) {
+            $("#bitcoin-container").html("$"+data.amount+" /฿");
+        }); 
+        setTimeout(updateBitcoin,12000000); // update every 20 minutes
+    }
 
 function updateTime() {
     var month = new Array();
