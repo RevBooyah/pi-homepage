@@ -1,8 +1,13 @@
 <html>
 <head>
+<link rel="stylesheet" href="./flipclock.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="jquery.simpleWeather.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+
+
+
+
 <style>
 
 
@@ -29,14 +34,31 @@ body {
     width: 1720px;
 }
 
+div {
+    /*border:1px solid #cccccc;*/
+}
+#timedate-container {
+    float:left;
+    width: 40%;
+    margin:0;
+    padding:0;
+}
 #time-container {
     font-size: 170px;
     font-weight:400;
     float:left;
-    width: 40%;
-    margin-bottom:30px;
+    clear:left;
+    width: 100%;
     color:#ffffff;
     margin: 0 auto 30px auto;
+    text-align:center;
+}
+.clock {
+    clear:left;
+    float:left;
+    width: 100%;
+    color:#ffffff;
+    margin: 0 auto 3px auto; 
     text-align:center;
 }
 
@@ -188,7 +210,10 @@ i {
 </head> 
 
 
-<div id='time-container'> </div>
+<div id='timedate-container'>
+    <div class="clock"></div>
+    <div id='time-container'></div>
+</div>
 
 <div id="weather"></div>
 
@@ -203,6 +228,7 @@ i {
 
 
 
+<script src="./flipclock.js"></script>
 <script> 
 $(document).ready(function() {
 
@@ -276,7 +302,8 @@ function updateTime() {
 
     months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
            days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    var tstr = hours+':'+minutes+ampm + '<div class="datestring">'+days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+"</div>";
+    //var tstr = hours+':'+minutes+ampm + '<div class="datestring">'+days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+"</div>";
+    var tstr = '<div class="datestring">'+days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+"</div>";
 
 
     $("#time-container").html(tstr);
@@ -286,6 +313,19 @@ function updateTime() {
 
 $("#second").load("https://calendar.google.com/calendar/embed?src=stevec%40s2media.com&ctz=America/Denver"); 
 });
+
+
+
+            var clock;
+
+            $(document).ready(function() {
+                clock = $('.clock').FlipClock({
+                    clockFace: 'TwelveHourClock',
+                    showSeconds: false
+                });
+            });
+
+
 </script>
 
 </html>
